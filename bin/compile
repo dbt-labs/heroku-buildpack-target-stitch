@@ -5,10 +5,10 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
 
-INSTALL_DIR="$1"'/.target-stitch'
+INSTALL_DIR="/app/.target-stitch"
 
 echo "Running cmd: /app/.heroku/python/bin/python -m venv $INSTALL_DIR"
-/app/.heroku/python/bin/python -m venv $INSTALL_DIR || exit 1
+/app/.heroku/python/bin/python -m venv --relocatable $INSTALL_DIR || exit 1
 
 echo "Running cmd: . $INSTALL_DIR/bin/activate"
 . $INSTALL_DIR/bin/activate || exit 1
@@ -18,3 +18,12 @@ $INSTALL_DIR/bin/pip install target-stitch || exit 1
 
 echo "Running cmd: deactivate"
 deactivate || exit 1
+
+mkdir -p $BUILD_DIR/.profile.d
+mkdir -p $BUILD_DIR/.bin
+
+cat > "$BUILD_DIR/.profile.d/awscli.sh" <<'PROFILE'
+ln -s /app/.target-stitch/bin/target-stitch ~/.bin/target-stitch
+
+export PATH="$PATH:$HOME/.bin"
+PROFILE
