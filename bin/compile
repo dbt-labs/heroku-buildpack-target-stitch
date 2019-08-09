@@ -1,4 +1,4 @@
 #!/bin/sh
 
-/app/.heroku/python/bin/python -m venv --python /app/.heroku/python/bin/python /app/.target-stitch
+/app/.heroku/python/bin/python -m venv /app/.target-stitch
 /app/.target-stitch/bin/pip install target-stitch
