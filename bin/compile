@@ -8,7 +8,7 @@ ENV_DIR=$3
 INSTALL_DIR="$BUILD_DIR/.target-stitch"
 
 echo "Running cmd: /app/.heroku/python/bin/python -m venv $INSTALL_DIR"
-/app/.heroku/python/bin/python -m venv $INSTALL_DIR || exit 1
+/app/.heroku/python/bin/python2 -m virtualenv --relocatable $INSTALL_DIR || exit 1
 
 echo "Running cmd: . $INSTALL_DIR/bin/activate"
 . $INSTALL_DIR/bin/activate || exit 1
@@ -27,3 +27,6 @@ ln -s /app/.target-stitch/bin/target-stitch ~/.bin/target-stitch
 
 export PATH="$PATH:$HOME/.bin"
 PROFILE
+
+# replace paths so that this will work after heroku relocates it
+find $INSTALL_DIR -type f -name '*' -exec sed -i "s|$BUILD_DIR|/app|g" {} \;
