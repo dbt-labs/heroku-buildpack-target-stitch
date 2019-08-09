@@ -8,7 +8,7 @@ ENV_DIR=$3
 INSTALL_DIR="/app/.target-stitch"
 
 echo "Running cmd: /app/.heroku/python/bin/python -m venv $INSTALL_DIR"
-/app/.heroku/python/bin/python -m venv --relocatable $INSTALL_DIR || exit 1
+/app/.heroku/python/bin/python -m venv $INSTALL_DIR || exit 1
 
 echo "Running cmd: . $INSTALL_DIR/bin/activate"
 . $INSTALL_DIR/bin/activate || exit 1
