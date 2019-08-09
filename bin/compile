@@ -1,6 +1,4 @@
 #!/bin/sh
 
-python -m venv /app/.target-stitch
-source /app/.target_stitch/bin/activate
-pip install target-stitch
-deactivate
+/app/.heroku/python/bin/python virtualenv.py --no-download --python /app/.heroku/python/bin/python /app/.target-stitch
+/app/.target-stitch/bin/pip install target-stitch
