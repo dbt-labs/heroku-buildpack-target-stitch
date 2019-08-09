@@ -1,0 +1,6 @@
+#!/bin/sh
+
+python -m venv /app/.target-stitch
+source /app/.target_stitch/bin/activate
+pip install target-stitch
+deactivate

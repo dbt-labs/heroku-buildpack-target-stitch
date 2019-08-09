@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo "target-stitch"
+exit 0
