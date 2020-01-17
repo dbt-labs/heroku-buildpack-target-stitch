@@ -16,6 +16,9 @@ echo "Running cmd: . $INSTALL_DIR/bin/activate"
 echo "Running cmd: $INSTALL_DIR/bin/pip install target-stitch"
 $INSTALL_DIR/bin/pip install target-stitch || exit 1
 
+echo "Running cmd: $INSTALL_DIR/bin/pip install awscli"
+$INSTALL_DIR/bin/pip install awscli || exit 1
+
 echo "Running cmd: deactivate"
 deactivate || exit 1
 
@@ -24,6 +27,7 @@ mkdir -p $BUILD_DIR/.bin
 
 cat > "$BUILD_DIR/.profile.d/target-stitch.sh" <<'PROFILE'
 ln -s /app/.target-stitch/bin/target-stitch ~/.bin/target-stitch
+ln -s /app/.target-stitch/bin/aws ~/.bin/aws
 
 export PATH="$PATH:$HOME/.bin"
 PROFILE
